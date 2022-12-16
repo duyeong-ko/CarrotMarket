@@ -48,7 +48,7 @@ extension TabbarController : UITabBarControllerDelegate {
         lineView.backgroundColor = .linegray2
         self.tabBar.addSubview(lineView)
         
-        let HomeViewController = ViewController()
+        let HomeViewController = ProductListVC()
         let HomeNavigationController =  UINavigationController(rootViewController: HomeViewController)
         HomeNavigationController.navigationBar.isHidden = true
         HomeNavigationController.tabBarItem.title = "홈"

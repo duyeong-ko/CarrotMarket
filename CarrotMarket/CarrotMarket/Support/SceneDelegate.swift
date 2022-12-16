@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
                 
                 let rootVC = TabbarController()
-//                rootVC.navigationController?.isNavigationBarHidden = true
                 
                 window.rootViewController = rootVC
                 window.makeKeyAndVisible()

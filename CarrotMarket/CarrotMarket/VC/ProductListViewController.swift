@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  ProductListViewController.swift
 //  CarrotMarket
 //
-//  Created by 고두영 on 2022/12/13.
+//  Created by 고두영 on 2022/12/16.
 //
 
 import UIKit
 import SnapKit
 import Then
 
-class ViewController: UIViewController {
+class ProductListViewController: UIViewController {
     
     let headerView = UIView().then {
         $0.backgroundColor = .white
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension ProductListViewController {
     private func setLayout() {
         
         view.addSubview(headerView)
@@ -77,10 +77,6 @@ extension ViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
-        
-
-
-        
     }
     
     private func configImageView(){
