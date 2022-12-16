@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		984ECC4D2949C1AE0002477E /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ECC4C2949C1AE0002477E /* TabbarController.swift */; };
+		984ECC4F2949C7440002477E /* FakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984ECC4E2949C7440002477E /* FakeViewController.swift */; };
 		987E4C5F29484C9300060FD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E4C5E29484C9300060FD1 /* AppDelegate.swift */; };
 		987E4C6129484C9300060FD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E4C6029484C9300060FD1 /* SceneDelegate.swift */; };
 		987E4C6329484C9300060FD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E4C6229484C9300060FD1 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		984ECC4C2949C1AE0002477E /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		984ECC4E2949C7440002477E /* FakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeViewController.swift; sourceTree = "<group>"; };
 		987E4C5B29484C9300060FD1 /* CarrotMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrotMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		987E4C5E29484C9300060FD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		987E4C6029484C9300060FD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				987E4C6229484C9300060FD1 /* ViewController.swift */,
+				984ECC4C2949C1AE0002477E /* TabbarController.swift */,
+				984ECC4E2949C7440002477E /* FakeViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -236,6 +242,8 @@
 				987E4C6329484C9300060FD1 /* ViewController.swift in Sources */,
 				987E4C792948545A00060FD1 /* UIColor+.swift in Sources */,
 				987E4C5F29484C9300060FD1 /* AppDelegate.swift in Sources */,
+				984ECC4F2949C7440002477E /* FakeViewController.swift in Sources */,
+				984ECC4D2949C1AE0002477E /* TabbarController.swift in Sources */,
 				987E4C6129484C9300060FD1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

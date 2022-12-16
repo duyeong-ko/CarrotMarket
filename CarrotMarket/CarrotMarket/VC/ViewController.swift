@@ -12,7 +12,7 @@ import Then
 class ViewController: UIViewController {
     
     let headerView = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .white
     }
     
     let locationLabel = UILabel().then {
@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         $0.backgroundColor = .square_gray
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -39,12 +40,16 @@ class ViewController: UIViewController {
 
 extension ViewController {
     private func setLayout() {
+        
+        view.addSubview(headerView)
+        headerView.backgroundColor = .white
         [locationLabel, searchImgView, menuImgView, alarmImgView, lineView1].forEach {
             headerView.addSubview($0)
         }
         
-        [headerView].forEach {
-            view.addSubview($0)
+        headerView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            $0.height.equalTo(44)
         }
         
         locationLabel.snp.makeConstraints {
@@ -73,11 +78,9 @@ extension ViewController {
             $0.height.equalTo(1)
         }
         
-        headerView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            $0.height.equalTo(44)
-        }
+
+
+        
     }
     
     private func configImageView(){
