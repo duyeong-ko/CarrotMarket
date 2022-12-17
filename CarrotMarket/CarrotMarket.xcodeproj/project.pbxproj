@@ -155,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				987E4C6229484C9300060FD1 /* ProductListVC.swift */,
+				984ECC58294DFE800002477E /* CreateVC.swift */,
 				984ECC4C2949C1AE0002477E /* TabbarController.swift */,
 				984ECC4E2949C7440002477E /* FakeViewController.swift */,
-				984ECC58294DFE800002477E /* CreateVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";

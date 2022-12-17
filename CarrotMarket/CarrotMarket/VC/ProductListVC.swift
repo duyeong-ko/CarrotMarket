@@ -69,8 +69,6 @@ extension ProductListVC {
             view.addSubview($0)
         }
         
-//        self.view.bringSubviewToFront(self.createButton)
-        
         [locationLabel, searchImgView, menuImgView, alarmImgView, lineView1].forEach {
             headerView.addSubview($0)
         }
