@@ -41,6 +41,45 @@ class CreateVC: UIViewController {
         $0.backgroundColor = .square_gray
     }
     
+    let cameraImgView = UIImageView()
+    
+    let lineView2 = UIView().then {
+        $0.backgroundColor = .linegray2
+    }
+    
+    let textField1 = UITextField().then {
+        $0.backgroundColor = .white
+        $0.placeholder = "글 제목"
+        $0.font = UIFont(name: "Poppins-Regular", size: 16)
+        $0.textColor = .square_gray
+    }
+    
+    let lineView3 = UIView().then {
+        $0.backgroundColor = .linegray2
+    }
+    
+    let textField2 = UITextField().then {
+        $0.backgroundColor = .white
+        $0.placeholder = "카테고리"
+        $0.font = UIFont(name: "Poppins-Regular", size: 16)
+        $0.textColor = .square_gray
+    }
+    
+    let lineView4 = UIView().then {
+        $0.backgroundColor = .linegray2
+    }
+    
+    let textField3 = UITextField().then {
+        $0.backgroundColor = .white
+        $0.placeholder = "₩ 가격"
+        $0.font = UIFont(name: "Poppins-Regular", size: 16)
+        $0.textColor = .square_gray
+    }
+    
+    let lineView5 = UIView().then {
+        $0.backgroundColor = .linegray2
+    }
+    
     let footerView = UIView().then {
         $0.backgroundColor = .clear
     }
@@ -60,7 +99,7 @@ class CreateVC: UIViewController {
         $0.font = UIFont(name: "Poppins-Regular", size: 13)
     }
     
-    let lineView2 = UIView().then {
+    let lastLineView = UIView().then {
         $0.backgroundColor = .linegray2
     }
     
@@ -85,11 +124,11 @@ extension CreateVC {
             headerView.addSubview($0)
         }
         
-        [writeLabel, writeImgView, settingImgView, settingLabel, lineView2].forEach {
+        [writeLabel, writeImgView, settingImgView, settingLabel, lastLineView].forEach {
             footerView.addSubview($0)
         }
         
-        [].forEach {
+        [cameraImgView, lineView2, textField1, lineView3, textField2, lineView4, textField3, lineView5].forEach {
             containerView.addSubview($0)
         }
         
@@ -119,12 +158,60 @@ extension CreateVC {
             $0.height.equalTo(1)
         }
         
+        cameraImgView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(24)
+            $0.leading.equalToSuperview().offset(16)
+        }
+        
+        lineView2.snp.makeConstraints {
+            $0.top.equalTo(self.cameraImgView.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().offset(15)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        textField1.snp.makeConstraints {
+            $0.top.equalTo(self.lineView2.snp.bottom).offset(22)
+            $0.leading.trailing.equalToSuperview().offset(15)
+        }
+        
+        lineView3.snp.makeConstraints {
+            $0.top.equalTo(self.textField1.snp.bottom).offset(23)
+            $0.leading.trailing.equalToSuperview().offset(15)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        textField2.snp.makeConstraints {
+            $0.top.equalTo(self.lineView3.snp.bottom).offset(22)
+            $0.leading.trailing.equalToSuperview().offset(15)
+        }
+        
+        lineView4.snp.makeConstraints {
+            $0.top.equalTo(self.textField2.snp.bottom).offset(23)
+            $0.leading.trailing.equalToSuperview().offset(15)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        textField3.snp.makeConstraints {
+            $0.top.equalTo(self.lineView4.snp.bottom).offset(22)
+            $0.leading.trailing.equalToSuperview().offset(15)
+        }
+        
+        lineView5.snp.makeConstraints {
+            $0.top.equalTo(self.textField3.snp.bottom).offset(23)
+            $0.leading.trailing.equalToSuperview().offset(15)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
         footerView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(47)
         }
         
-        lineView2.snp.makeConstraints {
+        lastLineView.snp.makeConstraints {
             $0.top.equalTo(self.footerView.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
@@ -160,10 +247,11 @@ extension CreateVC {
     private func configImageView(){
         writeImgView.image = UIImage(named: "ios_icon_often")
         settingImgView.image = UIImage(named: "ios_icon_filter")
+        cameraImgView.image = UIImage(named: "camera")
     }
     
     @objc private func touchupCloseButton() {
-        
+        self.dismiss(animated: true)
     }
     
     @objc private func touchupDoneButton() {
