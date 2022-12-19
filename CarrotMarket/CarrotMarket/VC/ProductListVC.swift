@@ -29,6 +29,10 @@ class ProductListVC: UIViewController {
         $0.backgroundColor = .square_gray
     }
     
+    lazy var createButton = UIButton().then {
+        $0.addTarget(self, action: #selector(presentToCreate), for: .touchUpInside)
+    }
+    
     private lazy var productTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -53,6 +57,7 @@ class ProductListVC: UIViewController {
         register()
         setLayout()
         configImageView()
+        configButton()
         view.backgroundColor = .white
     }
 }
@@ -60,11 +65,10 @@ class ProductListVC: UIViewController {
 extension ProductListVC {
     private func setLayout() {
         
-        [headerView, productTableView].forEach {
+        [headerView, productTableView, createButton].forEach {
             view.addSubview($0)
         }
         
-        headerView.backgroundColor = .white
         [locationLabel, searchImgView, menuImgView, alarmImgView, lineView1].forEach {
             headerView.addSubview($0)
         }
@@ -107,6 +111,10 @@ extension ProductListVC {
             $0.height.equalTo(141 * productList.count)
         }
         
+        createButton.snp.makeConstraints {
+            $0.bottom.equalTo(self.view).offset(-91)
+            $0.trailing.equalToSuperview().offset(-15)
+        }
     }
     
     private func configImageView(){
@@ -115,8 +123,20 @@ extension ProductListVC {
         alarmImgView.image = UIImage(named: "ios_icon_bell")
     }
     
+    private func configButton(){
+        let backgroundButtonImage = UIImage(named: "ios_floating_button") as UIImage?
+        createButton.setImage(backgroundButtonImage, for: .normal)
+    }
+    
     private func register() {
         productTableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
+    }
+    
+    @objc private func presentToCreate() {
+        let nextVC = CreateVC()
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        
     }
 }
 
