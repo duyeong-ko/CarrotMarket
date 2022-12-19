@@ -49,9 +49,12 @@ class CreateVC: UIViewController {
     
     let textField1 = UITextField().then {
         $0.backgroundColor = .white
-        $0.placeholder = "글 제목"
         $0.font = UIFont(name: "Poppins-Regular", size: 16)
-        $0.textColor = .square_gray
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "글 제목",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.square_gray]
+        )
+        $0.textColor = .black
     }
     
     let lineView3 = UIView().then {
@@ -60,9 +63,12 @@ class CreateVC: UIViewController {
     
     let textField2 = UITextField().then {
         $0.backgroundColor = .white
-        $0.placeholder = "카테고리"
         $0.font = UIFont(name: "Poppins-Regular", size: 16)
-        $0.textColor = .square_gray
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "카테고리",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.square_gray]
+        )
+        $0.textColor = .black
     }
     
     let lineView4 = UIView().then {
@@ -71,13 +77,34 @@ class CreateVC: UIViewController {
     
     let textField3 = UITextField().then {
         $0.backgroundColor = .white
-        $0.placeholder = "₩ 가격"
         $0.font = UIFont(name: "Poppins-Regular", size: 16)
-        $0.textColor = .square_gray
+        $0.attributedPlaceholder = NSAttributedString(
+            string: "₩ 가격",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.square_gray]
+        )
+        $0.textColor = .black
     }
     
     let lineView5 = UIView().then {
         $0.backgroundColor = .linegray2
+    }
+    
+    let priceButton = UIButton().then {
+        $0.addTarget(self, action: #selector(checkButton), for: .touchUpInside)
+    }
+    
+    let priceLabel = UILabel().then {
+        $0.text = "가격제안 받기"
+        $0.textColor = .square_gray
+        $0.font = UIFont(name: "Poppins-Regular", size: 13)
+    }
+    
+    let textViewPlaceHolder = "내용을 작성해주세요."
+    lazy var textView = UITextView().then {
+        $0.backgroundColor = .clear
+        $0.font = UIFont(name: "Poppins-Regular", size: 16)
+        $0.textColor = .square_gray
+        $0.text = textViewPlaceHolder
     }
     
     let footerView = UIView().then {
@@ -110,6 +137,10 @@ class CreateVC: UIViewController {
         view.backgroundColor = .white
         setLayout()
         configImageView()
+        configButton()
+        self.textField3.delegate = self
+        self.textView.delegate = self
+        self.completionButton(isOn: false)
     }
     
 }
@@ -128,7 +159,7 @@ extension CreateVC {
             footerView.addSubview($0)
         }
         
-        [cameraImgView, lineView2, textField1, lineView3, textField2, lineView4, textField3, lineView5].forEach {
+        [cameraImgView, lineView2, textField1, lineView3, textField2, lineView4, textField3, lineView5, priceButton, priceLabel, textView].forEach {
             containerView.addSubview($0)
         }
         
@@ -206,6 +237,23 @@ extension CreateVC {
             $0.height.equalTo(1)
         }
         
+        priceLabel.snp.makeConstraints {
+            $0.centerY.equalTo(self.textField3)
+            $0.trailing.equalTo(self.view.safeAreaLayoutGuide).offset(-15)
+        }
+        
+        priceButton.snp.makeConstraints {
+            $0.centerY.equalTo(self.textField3)
+            $0.trailing.equalTo(self.priceLabel.snp.leading).offset(-5)
+        }
+        
+        textView.snp.makeConstraints {
+            $0.top.equalTo(self.lineView5.snp.bottom).offset(15)
+            $0.leading.trailing.equalToSuperview().offset(15)
+            $0.height.equalTo(305)
+            $0.bottom.equalToSuperview().offset(15)
+        }
+        
         footerView.snp.makeConstraints {
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(47)
@@ -250,11 +298,54 @@ extension CreateVC {
         cameraImgView.image = UIImage(named: "camera")
     }
     
+    private func configButton(){
+        let backgroundButtonImage = UIImage(named: "ios_check_off") as UIImage?
+        priceButton.setImage(backgroundButtonImage, for: .normal)
+    }
+    
     @objc private func touchupCloseButton() {
         self.dismiss(animated: true)
     }
     
     @objc private func touchupDoneButton() {
         
+    }
+    
+    func completionButton(isOn: Bool){
+        switch isOn{
+        case true:
+            priceButton.setImage(UIImage(named: "ios_check_on"), for: .normal)
+        case false:
+            priceButton.setImage(UIImage(named: "ios_check_off"), for: .normal)
+        }
+    }
+    
+    @objc private func checkButton() {
+        completionButton(isOn: true)
+    }
+}
+
+extension CreateVC: UITextFieldDelegate, UITextViewDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if range.location == 0 && range.length != 0 {
+            priceLabel.textColor = .square_gray
+        } else {
+            priceLabel.textColor = .black
+        }
+        return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == textViewPlaceHolder {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = textViewPlaceHolder
+            textView.textColor = .lightGray
+        }
     }
 }
